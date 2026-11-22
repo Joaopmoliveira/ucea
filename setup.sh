@@ -38,7 +38,10 @@ fi
 
 step "Installing UCEA and its bundled ultralytics copy"
 in_env python -m pip uninstall -y ultralytics >/dev/null 2>&1 || true
-in_env python -m pip install -e "$REPO_DIR" -e "$REPO_DIR/ultralytics" -c "$CONSTRAINTS"
+in_env python -m pip install -e "$REPO_DIR" -c "$CONSTRAINTS"
+# compat mode puts the folder on sys.path via a .pth file. The default editable mode loses to
+# the outer ultralytics/ folder (seen as a namespace package) when Python runs from the repo root.
+in_env python -m pip install -e "$REPO_DIR/ultralytics" -c "$CONSTRAINTS" --config-settings editable_mode=compat
 
 step "Checking data files"
 missing=0

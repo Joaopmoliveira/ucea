@@ -35,7 +35,10 @@ call conda run -n %ENV_NAME% --no-capture-output python -m pip install torch tor
 echo.
 echo ==^> Installing UCEA and its bundled ultralytics copy
 call conda run -n %ENV_NAME% python -m pip uninstall -y ultralytics >nul 2>&1
-call conda run -n %ENV_NAME% --no-capture-output python -m pip install -e "%REPO_DIR%" -e "%REPO_DIR%\ultralytics" -c "%CONSTRAINTS%" || goto :fail
+call conda run -n %ENV_NAME% --no-capture-output python -m pip install -e "%REPO_DIR%" -c "%CONSTRAINTS%" || goto :fail
+rem compat mode puts the folder on sys.path via a .pth file. The default editable mode loses to
+rem the outer ultralytics\ folder (seen as a namespace package) when Python runs from the repo root.
+call conda run -n %ENV_NAME% --no-capture-output python -m pip install -e "%REPO_DIR%\ultralytics" -c "%CONSTRAINTS%" --config-settings editable_mode=compat || goto :fail
 
 echo.
 echo ==^> Checking data files
