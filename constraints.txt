@@ -1,0 +1,7 @@
+# Version pins for the cea environment. Use with: pip install ... -c constraints.txt
+# CEA, numba and wntr need numpy<2; opencv-python 4.12+ requires numpy>=2.
+numpy==1.26.4
+opencv-python==4.11.0.86
+# torchvision 0.29.2 is built for torch 2.14; they must match exactly.
+torch==2.14.1
+torchvision==0.29.2

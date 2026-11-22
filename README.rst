@@ -28,6 +28,7 @@ City Energy Analyst (CEA)
 
 The `City Energy Analyst (CEA) <https://www.cityenergyanalyst.com/>`_ is an urban building energy simulation platform and one of the first open-source initiatives of computation tools for the design of low-carbon and highly efficient cities. The CEA combines knowledge of urban planning and energy systems engineering in an integrated simulation platform. This allows to study of the effects, trade-offs, and synergies of urban design scenarios and energy infrastructure plans. At CEA we are committed to empowering practitioners and researchers to plan future low-carbon cities. 
 
+This particular version of CEA is an enhancement of the tool that can download satellite tiles, and predict the characteristics of the buildings from it.
 
 * Click `here <https://city-energy-analyst.readthedocs.io/en/latest/index.html>`__  for our documentation
 

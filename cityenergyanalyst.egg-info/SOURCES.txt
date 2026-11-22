@@ -540,6 +540,7 @@ cea/resources/radiation/main.py
 cea/resources/radiation/radiance.py
 cea/resources/radiation/remap_roof_metadata.py
 cea/resources/radiation/roof_visualizer.py
+cea/resources/radiation/roof_visualizer_satellite.py
 cea/resources/radiation/solar_capacity_map_3d.py
 cea/resources/radiation/ucea.py
 cea/resources/radiation/ucea_visualization.py

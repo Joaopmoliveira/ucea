@@ -1,0 +1,43 @@
+# Makes the modified ultralytics copy (8.3.201 + custom "roof" model) in this folder
+# installable, so `pip install -e ./ultralytics` installs its dependencies and makes
+# `from ultralytics import YOLO` resolve to this copy from any working directory.
+# Version pins live in ../constraints.txt (numpy<2 is required by CEA).
+
+[build-system]
+requires = ["setuptools>=70.0.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ultralytics"
+dynamic = ["version"]
+description = "Ultralytics YOLO 8.3.201 with the UCEA roof model (vendored, modified)"
+requires-python = ">=3.10"
+license = { text = "AGPL-3.0" }
+dependencies = [
+    # upstream ultralytics 8.3.201 runtime dependencies
+    "numpy>=1.23.0,<2",
+    "matplotlib>=3.3.0",
+    "opencv-python>=4.6.0",
+    "pillow>=7.1.2",
+    "pyyaml>=5.3.1",
+    "requests>=2.23.0",
+    "scipy>=1.4.1",
+    "torch>=1.8.0,!=2.4.0",
+    "torchvision>=0.9.0",
+    "psutil",
+    "polars",
+    "ultralytics-thop>=2.0.0",
+    # imported by fixedboxtrick.py and the roof workflow
+    "folium",
+    "gradio",
+    "owslib",
+    "pydeck",
+    "pyvista",
+]
+
+[tool.setuptools]
+packages = { find = { where = ["."], include = ["ultralytics", "ultralytics.*"] } }
+package-data = { "ultralytics" = ["**/*.yaml", "**/*.sh"], "ultralytics.assets" = ["*.jpg"], "ultralytics.solutions.templates" = ["*.html"] }
+
+[tool.setuptools.dynamic]
+version = { attr = "ultralytics.__version__" }
